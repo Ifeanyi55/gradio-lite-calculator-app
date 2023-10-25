@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" crossorigin src="https://cdn.jsdelivr.net/npm/@gradio/lite/dist/lite.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gradio/lite/dist/lite.css" />
+    <link rel="shortcut icon" type="image/png" href="image/calc.png"/> 
+    <title>Calculator</title>
+</head>
+<body>
+    <gradio-lite theme = "dark">
+
+        import gradio as gr
+        
+        def calculator(x,y,operation):
+            if operation == "Addition":
+                return x + y
+            elif operation == "Subtraction":
+                return x - y
+            elif operation == "Division":
+                return x/y
+            elif operation == "Multiplication":
+                return x * y
+                
+            
+        gr.Interface(calculator,inputs = [gr.Number(label = "First Number"),
+                                        gr.Number(label = "Second Number"),
+                                        gr.Radio(["Addition","Subtraction","Division","Multiplication"],label = "Choose Operation")], 
+                                        theme = gr.themes.Soft(),
+                                        analytics_enabled=True,
+                                        outputs = gr.Number(label = "Calculation Result"), 
+                                        title = "Calculator").launch()
+
+    </gradio-lite>
+    
+</body>
+</html>
